@@ -1,19 +1,13 @@
-import qs from 'query-string';
+// import {stringify} from 'query-string';
+const queryString = require('query-string'); // why doesn't rollup like import {stringify} from 'query-string' ??
 
-const endpoint = 'https://thismight.be/offensive/api.php/';
-
-export const get = (path, params = {}) => {
-	return request(path, params);
+export const get = async (url, params = {}) => {
+	const query = queryString.stringify(params);
+	const result = await fetch(`${url}?${query}`)
+	if (result.ok) {
+		const json = await result.json();
+		console.log(json);
+		return json;
+	}
+	throw new Error;
 };
-
-function request (path, params = {}, method = 'GET') {
-	const query = qs.stringify(params);
-	return fetch(`${endpoint}${path}?${query}`, {
-		method,
-	})
-	.then(response => {
-		console.log(response.ok);
-		console.log(response.json());
-		return response.json();
-	});
-}
