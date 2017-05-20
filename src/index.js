@@ -27,12 +27,24 @@ export default class TmboClient {
 	}
 
 	async login (username, password) {
-		const result = await this.post('login.json', {
+		const response = await this.post('login.json', {
 			username,
 			password,
 			gettoken: 1
 		});
-		Storage.set(AUTH_TOKEN, result.tokenid);
-		return result;
+
+		if (response.ok) {
+			return response.json()
+				.then(json => {
+					Storage.set(AUTH_TOKEN, json.tokenid);
+					return json;
+				});
+		}
+
+		return response;
+	}
+
+	logout () {
+		Storage.remove(AUTH_TOKEN);
 	}
 }

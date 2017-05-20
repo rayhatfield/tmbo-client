@@ -2,27 +2,15 @@ import {stringify} from 'query-string';
 
 export async function get (url, params = {}) {
 	const query = stringify(params);
-	const result = await fetch(`${url}?${query}`);
-	if (result.ok) {
-		const json = await result.json();
-		console.log(json);
-		return json;
-	}
-	throw new Error;
+	return fetch(`${url}?${query}`);
 }
 
 export async function post (url, params = {}) {
-	const result = await fetch(url, {
+	return fetch(url, {
 		method: 'POST',
 		// body: JSON.stringify(params)
 		body: asFormData(params)
 	});
-
-	if (result.ok) {
-		const json = await result.json();
-		console.log(json);
-		return json;
-	}
 }
 
 function asFormData (data) {
