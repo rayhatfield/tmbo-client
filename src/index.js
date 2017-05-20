@@ -1,3 +1,4 @@
+import {version} from '../package.json';
 import {get, post} from './requests';
 import Storage from './storage';
 
@@ -6,6 +7,7 @@ const AUTH_TOKEN = 'auth-token';
 export default class TmboClient {
 	constructor ({endpoint}) {
 		this.endpoint = endpoint;
+		this.version = version;
 	}
 
 	get = (path, params) => {
