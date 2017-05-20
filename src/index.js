@@ -1,4 +1,4 @@
-import {get} from './requests';
+import {get, post} from './requests';
 import Storage from './storage';
 
 const AUTH_TOKEN = 'auth-token';
@@ -16,8 +16,16 @@ export default class TmboClient {
 		});
 	}
 
+	post = (path, params) => {
+		const token = Storage.get(AUTH_TOKEN);
+		return post(`${this.endpoint}${path}`, {
+			token,
+			...params
+		});
+	}
+
 	async login (username, password) {
-		const result = await this.get('login.json', {
+		const result = await this.post('login.json', {
 			username,
 			password,
 			gettoken: 1
