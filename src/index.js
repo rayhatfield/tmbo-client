@@ -1,4 +1,4 @@
-import {version} from '../package.json';
+import {version, homepage} from '../package.json';
 import {get, post} from './requests';
 import Storage from './storage';
 
@@ -8,6 +8,7 @@ export default class TmboClient {
 	constructor ({endpoint}) {
 		this.endpoint = endpoint;
 		this.version = version;
+		this.homepage = homepage;
 	}
 
 	get = (path, params) => {
