@@ -1,3 +1,5 @@
+import {resolve} from 'url';
+
 import {version, homepage} from '../package.json';
 import {get, post} from './requests';
 import Storage from './storage';
@@ -25,6 +27,29 @@ export default class TmboClient {
 			token,
 			...params
 		});
+	}
+
+	resolve = (path) => {
+		return resolve(this.endpoint, path);
+	}
+
+	async loadImages () {
+		return this.getUploads({
+			type: 'image'
+		});
+	}
+
+	async loadDiscussions () {
+		return this.getUploads({
+			type: 'topic'
+		});
+	}
+
+	async getUploads ({type = 'image'}) {
+		return this.get('getuploads.json', {
+			type
+		})
+		.then( response => response.json() );
 	}
 
 	async login (username, password) {
