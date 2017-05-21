@@ -45,6 +45,14 @@ export default class TmboClient {
 		});
 	}
 
+	async getUpload (fileid) {
+		console.log(fileid);
+		return this.get('getupload.json', {
+			fileid
+		})
+		.then( response => response.json() );
+	}
+
 	async getUploads ({type = 'image'}) {
 		return this.get('getuploads.json', {
 			type
