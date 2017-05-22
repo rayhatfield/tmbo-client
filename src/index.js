@@ -59,6 +59,13 @@ export default class TmboClient {
 		.then( response => response.json() );
 	}
 
+	async getComments (thread) {
+		return this.get('getcomments.json', {
+			thread
+		})
+		.then( response => response.json() );
+	}
+
 	async getCurrentUser () {
 		const token = Storage.get(AUTH_TOKEN);
 		if (!token) {
