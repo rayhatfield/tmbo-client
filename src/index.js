@@ -59,6 +59,14 @@ export default class TmboClient {
 		.then( response => response.json() );
 	}
 
+	async getCurrentUser () {
+		const token = Storage.get(AUTH_TOKEN);
+		if (!token) {
+			return Promise.reject('No auth token');
+		}
+		return this.get('getuser.json');
+	}
+
 	async login (username, password) {
 		const response = await this.post('login.json', {
 			username,
