@@ -46,7 +46,6 @@ export default class TmboClient {
 	}
 
 	async getUpload (fileid) {
-		console.log(fileid);
 		return this.get('getupload.json', {
 			fileid
 		})
