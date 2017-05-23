@@ -66,6 +66,13 @@ export default class TmboClient {
 		.then( response => response.json() );
 	}
 
+	async getUser (userid) {
+		return this.get('getuser.json', {
+			userid
+		})
+		.then( response => response.json() );
+	}
+
 	async getCurrentUser () {
 		const token = Storage.get(AUTH_TOKEN);
 		if (!token) {
