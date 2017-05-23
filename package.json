@@ -39,7 +39,6 @@
     "rollup-watch": "^3.2.2"
   },
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
     "query-string": "^4.3.4"
   }
 }
