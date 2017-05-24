@@ -66,6 +66,14 @@ export default class TmboClient {
 		.then( response => response.json() );
 	}
 
+	async postComment (fileid, comment) {
+		return this.post('postcomment.json', {
+			fileid,
+			comment
+		})
+		.then( response => response.json() );
+	}
+
 	async getUser (userid) {
 		return this.get('getuser.json', {
 			userid
