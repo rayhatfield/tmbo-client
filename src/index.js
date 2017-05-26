@@ -45,6 +45,11 @@ export default class TmboClient {
 		});
 	}
 
+	async getUnread () {
+		return this.get('unreadcomments.json')
+		.then( response => response.json() );
+	}
+
 	async getUpload (fileid) {
 		return this.get('getupload.json', {
 			fileid
