@@ -91,7 +91,8 @@ export default class TmboClient {
 		if (!token) {
 			return Promise.reject('No auth token');
 		}
-		return this.get('getuser.json');
+		return this.get('getuser.json')
+			.then(response => response.json());
 	}
 
 	async login (username, password) {
