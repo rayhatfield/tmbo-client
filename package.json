@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A javascript library for interacting with the tmbo api",
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "module": "lib/index.js",
   "scripts": {
     "build": "rollup -c",
