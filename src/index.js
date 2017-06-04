@@ -57,6 +57,20 @@ export default class TmboClient {
 		.then( response => response.json() );
 	}
 
+	async getAdjacent (fileid, previous) {
+		if (typeof fileid !== 'number') {
+			throw Error('fileid must be a number');
+		}
+
+		const args = Object.assign({
+			type: 'image',
+			limit: 1
+		}, previous ? { max: fileid - 1} : { since: fileid + 1 });
+
+		return this.get('getuploads.json', args)
+		.then( response => response.json() );
+	}
+
 	async getUploads ({type = 'image'}) {
 		return this.get('getuploads.json', {
 			type
